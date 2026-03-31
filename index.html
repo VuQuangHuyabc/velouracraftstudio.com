@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veloura Craft Studio LLC - Handmade Necklaces</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .hero-new {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-new::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+            z-index: 1;
+        }
+        
+        .hero-content-new {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .floating-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .floating-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+        }
+        
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .category-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .category-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .category-image {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .category-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .category-card:hover .category-image img {
+            transform: scale(1.1);
+        }
+        
+        .stats-section {
+            background: #f8f9fa;
+            padding: 4rem 0;
+        }
+        
+        .stat-card {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+        
+        .testimonial-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1rem;
+            color: #666;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+        .newsletter-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem 0;
+        }
+        
+        .newsletter-form-new {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .newsletter-input {
+            border-radius: 50px;
+            border: none;
+            padding: 1rem 1.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .newsletter-btn {
+            border-radius: 50px;
+            padding: 1rem 2rem;
+            background: white;
+            color: #667eea;
+            border: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .newsletter-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index-new.html">Veloura Craft Studio</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index-new.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="products.html">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact Us</a>
+                    </li>
+                </ul>
+                <div class="d-flex">
+                    <button class="btn btn-outline-dark position-relative" onclick="window.location.href='cart.html'">
+                        <i class="bi bi-cart3"></i> Cart
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cart-count">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- New Hero Section -->
+    <section class="hero-new">
+        <div class="container">
+            <div class="hero-content-new">
+                <div class="row align-items-center min-vh-100">
+                    <div class="col-lg-6">
+                        <div class="floating-card p-5">
+                            <h1 class="display-3 fw-bold mb-4">Handcrafted Elegance, Made Just for You</h1>
+                            <p class="lead mb-4">Discover our exclusive collection of handmade necklaces, where each piece tells a unique story of craftsmanship and beauty.</p>
+                            <div class="d-flex gap-3 flex-wrap">
+                                <a href="products.html" class="btn btn-primary btn-lg">Explore Collection</a>
+                                <a href="#categories" class="btn btn-outline-primary btn-lg">Browse Categories</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="hero-image text-center">
+                            <img src="Products/1/variant-image-1.jpeg" alt="Handmade Necklace" class="img-fluid rounded-4 shadow-lg" style="max-height: 400px; object-fit: cover;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="py-5" id="categories">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-5 fw-bold">Shop by Category</h2>
+                <p class="lead text-muted">Find your perfect style from our curated collections</p>
+            </div>
+            <div class="category-grid">
+                <div class="category-card" onclick="window.location.href='products.html'">
+                    <div class="category-image">
+                        <img src="Products/1/variant-image-1.jpeg" alt="Pearl Collection">
+                    </div>
+                    <div class="p-4">
+                        <h4>Pearl Collection</h4>
+                        <p class="text-muted mb-3">Timeless elegance with natural pearls</p>
+                        <span class="badge bg-primary">12 Items</span>
+                    </div>
+                </div>
+                
+                <div class="category-card" onclick="window.location.href='products.html'">
+                    <div class="category-image">
+                        <img src="Products/2/main-image-1.jpeg" alt="Crystal Collection">
+                    </div>
+                    <div class="p-4">
+                        <h4>Crystal Collection</h4>
+                        <p class="text-muted mb-3">Sparkling beauty for special moments</p>
+                        <span class="badge bg-primary">8 Items</span>
+                    </div>
+                </div>
+                
+                <div class="category-card" onclick="window.location.href='products.html'">
+                    <div class="category-image">
+                        <img src="Products/3/variant-image-1.jpeg" alt="Gold Collection">
+                    </div>
+                    <div class="p-4">
+                        <h4>Gold Collection</h4>
+                        <p class="text-muted mb-3">Luxurious gold-plated designs</p>
+                        <span class="badge bg-primary">15 Items</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <div class="stat-number">500+</div>
+                        <h5>Happy Customers</h5>
+                        <p class="text-muted">Trusted by jewelry lovers</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <div class="stat-number">50+</div>
+                        <h5>Unique Designs</h5>
+                        <p class="text-muted">Handcrafted with love</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <div class="stat-number">4.9★</div>
+                        <h5>Average Rating</h5>
+                        <p class="text-muted">Customer satisfaction</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <div class="stat-number">24/7</div>
+                        <h5>Support</h5>
+                        <p class="text-muted">Always here to help</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-5 fw-bold">Featured Products</h2>
+                <p class="lead text-muted">Our most popular handmade necklaces</p>
+            </div>
+            <div class="row g-4" id="featured-products-new">
+                <!-- Products will be loaded here -->
+            </div>
+            <div class="text-center mt-5">
+                <a href="products.html" class="btn btn-outline-primary btn-lg">View All Products</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-5 fw-bold">What Our Customers Say</h2>
+                <p class="lead text-muted">Real reviews from happy customers</p>
+            </div>
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="testimonial-card">
+                        <div class="testimonial-text">
+                            "Absolutely beautiful necklace! The craftsmanship is exceptional and it arrived perfectly packaged. I get compliments every time I wear it."
+                        </div>
+                        <div class="testimonial-author">
+                            <img src="Products/4/variant-image-1.jpeg" alt="Sarah M." class="author-avatar">
+                            <div>
+                                <h6 class="mb-0">Sarah M.</h6>
+                                <small class="text-muted">Verified Buyer</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="testimonial-card">
+                        <div class="testimonial-text">
+                            "The quality exceeded my expectations! You can tell it's handmade with care. Will definitely be ordering more pieces."
+                        </div>
+                        <div class="testimonial-author">
+                            <img src="Products/5/main-image-1.jpeg" alt="Emily R." class="author-avatar">
+                            <div>
+                                <h6 class="mb-0">Emily R.</h6>
+                                <small class="text-muted">Verified Buyer</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="testimonial-card">
+                        <div class="testimonial-text">
+                            "Fast shipping and beautiful packaging! The necklace looks even better in person. Perfect gift for my sister's birthday."
+                        </div>
+                        <div class="testimonial-author">
+                            <img src="Products/6/variant-image-1.jpeg" alt="Jessica L." class="author-avatar">
+                            <div>
+                                <h6 class="mb-0">Jessica L.</h6>
+                                <small class="text-muted">Verified Buyer</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="display-5 fw-bold mb-3">Stay in the Loop</h2>
+                <p class="lead mb-4">Get exclusive offers and be the first to know about new arrivals</p>
+                <form class="newsletter-form-new" id="newsletter-form-new">
+                    <div class="input-group">
+                        <input type="email" class="form-control newsletter-input" placeholder="Enter your email address" required>
+                        <button class="btn newsletter-btn" type="submit">
+                            <i class="bi bi-send me-2"></i>Subscribe
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h5 class="mb-3">Veloura Craft Studio LLC</h5>
+                    <p class="mb-3">Creating beautiful handmade necklaces with passion and precision since 2020.</p>
+                    <div class="contact-info">
+                        <p class="mb-2"><i class="bi bi-envelope me-2"></i>contact@velouracraftstudio.com</p>
+                        <p class="mb-2"><i class="bi bi-geo-alt me-2"></i>1012 Marquez Place, Ste. 106-B Santa Fe, NM 87505 United States</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h5 class="mb-3">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="about.html" class="text-white-50 text-decoration-none">About Us</a></li>
+                        <li class="mb-2"><a href="contact.html" class="text-white-50 text-decoration-none">Contact Us</a></li>
+                        <li class="mb-2"><a href="privacy.html" class="text-white-50 text-decoration-none">Privacy Policy</a></li>
+                        <li class="mb-2"><a href="shipping.html" class="text-white-50 text-decoration-none">Shipping Policy</a></li>
+                        <li class="mb-2"><a href="terms.html" class="text-white-50 text-decoration-none">Terms and Conditions</a></li>
+                        <li class="mb-2"><a href="returns.html" class="text-white-50 text-decoration-none">Returns and Refunds Policy</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h5 class="mb-3">Newsletter</h5>
+                    <p class="mb-3">Subscribe to get special offers and updates</p>
+                    <form id="newsletter-form">
+                        <div class="input-group">
+                            <input type="email" class="form-control" placeholder="Your email" required>
+                            <button class="btn btn-primary" type="submit">Subscribe</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <hr class="bg-white-50">
+            <div class="text-center">
+                <p class="mb-0">&copy; 2024 Veloura Craft Studio LLC. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Load featured products for new homepage
+        function loadFeaturedProductsNew() {
+            const container = document.getElementById('featured-products-new');
+            if (!container) return;
+
+            // Debug: Check if products array is available
+            console.log('Products available:', products.length);
+            
+            const featuredProducts = products.slice(0, 3);
+            
+            container.innerHTML = featuredProducts.map(product => `
+                <div class="col-md-4">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="${product.image}" alt="${product.name}">
+                            ${product.badge ? `<span class="product-badge">${product.badge}</span>` : ''}
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">${product.name}</h3>
+                            <div class="product-price">
+                                $${product.price.toFixed(2)}
+                                ${product.originalPrice ? `<span class="original-price">$${product.originalPrice.toFixed(2)}</span>` : ''}
+                            </div>
+                            <p class="text-muted">${product.description}</p>
+                            <div class="d-grid gap-2">
+                                <button class="btn btn-primary" onclick="window.addToCart && window.addToCart(${product.id}, null, 1)">Add to Cart</button>
+                                <a href="product-detail.html?id=${product.id}" class="btn btn-outline-primary">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            
+            // Debug: Check if buttons are created
+            console.log('Featured products loaded');
+        }
+
+        // Newsletter form handler for new homepage
+        document.addEventListener('DOMContentLoaded', function() {
+            loadFeaturedProductsNew();
+            updateCartCount();
+
+            const newsletterFormNew = document.getElementById('newsletter-form-new');
+            if (newsletterFormNew) {
+                newsletterFormNew.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const email = this.querySelector('input[type="email"]').value;
+                    showToast('Thank you for subscribing to our newsletter!');
+                    this.reset();
+                });
+            }
+        });
+    </script>
+</body>
+</html>
